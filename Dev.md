@@ -1,6 +1,9 @@
 # Netflix GPT
 - Create React App
 - Configured TailwindCSS
+- Header
+- Login Form - Formik
+- Signup Form - Formik
 
 # Features
 - Non Auth
