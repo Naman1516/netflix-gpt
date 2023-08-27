@@ -1,9 +1,12 @@
-# Netflix GPT
+# Netflix GPT - Not an exact clone!
 - Create React App
 - Configured TailwindCSS
 - Header
+- Routing
 - Login Form - Formik
 - Signup Form - Formik
+- Form Validation
+- useRef Hook
 
 # Features
 - Non Auth
