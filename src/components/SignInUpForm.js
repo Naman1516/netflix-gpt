@@ -25,8 +25,6 @@ const SignInUpForm = () => {
             isSignInForm
         );
 
-        console.log(email.current.value, password.current.value, message);
-
         if (!isValid) {
             setErrorMessage(message);
             return;
