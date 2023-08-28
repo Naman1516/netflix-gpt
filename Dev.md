@@ -7,6 +7,9 @@
 - Signup Form - Formik
 - Form Validation
 - useRef Hook
+- Firebase Setup
+- Deploy to Firebase
+- Sign Up user using Firebase
 
 # Features
 - Non Auth

@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { validateUserData } from '../utils/validate';
 
+// auth
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from "../utils/firebase";
+
 const SignInUpForm = () => {
 
     const [isSignInForm, setIsSignInForm] = useState(true);
@@ -13,6 +17,42 @@ const SignInUpForm = () => {
     const email = useRef(null);
     const password = useRef(null);
     const name = useRef(null);
+
+    const signUp = async () => {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email.current.value,
+                password.current.value
+            );
+
+            const user = userCredential.user;
+            console.log({ user });
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log({ errorCode, errorMessage });
+            setErrorMessage(errorCode + "-" + errorMessage);
+        }
+    };
+
+    const signIn = async () => {
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email.current.value,
+                password.current.value
+            );
+
+            const user = userCredential.user;
+            console.log({ user });
+        } catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log({ errorCode, errorMessage });
+            setErrorMessage(errorCode + "-" + errorMessage);
+        }
+    };
 
     const handleButtonClick = (event) => {
         event.preventDefault();
@@ -31,6 +71,15 @@ const SignInUpForm = () => {
         } else {
             setErrorMessage(null);
         };
+
+        // SignIn / SignUp
+        if (isSignInForm) {
+            // Sign In
+            signIn();
+        } else {
+            // Sign Up
+            signUp();
+        }
     };
 
     return (
