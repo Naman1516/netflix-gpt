@@ -5,23 +5,46 @@ import { validateUserData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const SignInUpForm = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleForm = () => {
     setIsSignInForm(!isSignInForm);
   };
 
+  const navigateToBrowse = () => {
+    navigate("/browse");
+  };
+
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
+
+  const updateUserProfile = async (user) => {
+    try {
+      await updateProfile(user, {
+        displayName: name.current.value,
+        photoURL: "https://avatars.githubusercontent.com/u/72248080",
+      });
+      const { uid, email, displayName, photoURL } = auth.currentUser;
+      dispatch(addUser({ uid, email, displayName, photoURL }));
+      // will see
+      setErrorMessage(null);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
 
   const signUp = async () => {
     try {
@@ -33,7 +56,8 @@ const SignInUpForm = () => {
 
       const user = userCredential.user;
       console.log({ user });
-      navigate("/browse");
+      updateUserProfile(user);
+      navigateToBrowse();
       setErrorMessage(null);
     } catch (error) {
       const errorCode = error.code;
@@ -53,7 +77,7 @@ const SignInUpForm = () => {
 
       const user = userCredential.user;
       console.log({ user });
-      navigate("/browse");
+      navigateToBrowse();
       setErrorMessage(null);
     } catch (error) {
       const errorCode = error.code;
