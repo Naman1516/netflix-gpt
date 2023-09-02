@@ -33,7 +33,7 @@ const SignInUpForm = () => {
 
       const user = userCredential.user;
       console.log({ user });
-      navigate("/browser");
+      navigate("/browse");
       setErrorMessage(null);
     } catch (error) {
       const errorCode = error.code;
@@ -53,7 +53,7 @@ const SignInUpForm = () => {
 
       const user = userCredential.user;
       console.log({ user });
-      navigate("/browser");
+      navigate("/browse");
       setErrorMessage(null);
     } catch (error) {
       const errorCode = error.code;
