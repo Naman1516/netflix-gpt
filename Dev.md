@@ -1,4 +1,5 @@
 # Netflix GPT - Not an exact clone!
+
 - Create React App
 - Configured TailwindCSS
 - Header
@@ -10,19 +11,22 @@
 - Firebase Setup
 - Deploy to Firebase
 - Sign Up user using Firebase
+- Sign In
+- Creater Redux Store with userSlice
 
 # Features
+
 - Non Auth
-    - Sign In / Sign Up from
-    - Redirect to Browse Page
+  - Sign In / Sign Up from
+  - Redirect to Browse Page
 - Auth
-    - Browse
-        - Header
-        - Hero Movie
-            - Trailer in BG
-            - Title & Description
-            - Movie Suggestions
-                - Movie Lists
-    - NetflixGPT
-        - Search Bar
-        - Movie Suggestions
+  - Browse
+    - Header
+    - Hero Movie
+      - Trailer in BG
+      - Title & Description
+      - Movie Suggestions
+        - Movie Lists
+  - NetflixGPT
+    - Search Bar
+    - Movie Suggestions
