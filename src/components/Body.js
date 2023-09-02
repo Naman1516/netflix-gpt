@@ -10,7 +10,6 @@ import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -18,11 +17,9 @@ const Body = () => {
         //signin/up
         const { uid, email, displayName } = user;
         dispatch(addUser({ uid, email, displayName }));
-        navigate("/browse");
       } else {
         //signout
         dispatch(removeUser());
-        navigate("/");
       }
     });
   }, []);
