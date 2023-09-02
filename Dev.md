@@ -13,6 +13,8 @@
 - Sign Up user using Firebase
 - Sign In
 - Creater Redux Store with userSlice
+- Signout
+- Update Profile
 
 # Features
 
