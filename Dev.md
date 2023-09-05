@@ -15,6 +15,10 @@
 - Creater Redux Store with userSlice
 - Signout
 - Update Profile
+- Fix Signup user name and pic
+- Fix route protection
+- Unsubscribed to onAuthStateChanged callback
+- Fetch from TMDB
 
 # Features
 
