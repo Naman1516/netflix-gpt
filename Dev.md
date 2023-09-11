@@ -12,13 +12,22 @@
 - Deploy to Firebase
 - Sign Up user using Firebase
 - Sign In
-- Creater Redux Store with userSlice
+- Created Redux Store with userSlice
 - Signout
 - Update Profile
 - Fix Signup user name and pic
 - Fix route protection
 - Unsubscribed to onAuthStateChanged callback
+- Register at TMDB, create an app, get access token
 - Fetch from TMDB
+- Custom Hook
+- Create movieSlice
+- Update store with movies data
+- Planning fro main and secondary container
+- Fetched data for Trailer video
+- Update store with Trailer Video data
+- Embedded the Youtube video and make it autoplay and mute
+- Tailwind classes to make main container look awesome
 
 # Features
 
