@@ -5,6 +5,8 @@ export const SIGNINUP_BG =
 export const USER_ICON =
   "https://occ-0-2483-3663.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABRFZFS8db1R43jhQH8qYonvQ7XOdqfn1JEgczxD7Uz5vCGx-vnN18_sI8xORbinwQJzWgucNziIuHH8mhFA1iR7CGB8A4ms.png?r=eea";
 
+export const IMAGE_CDN = "https://image.tmdb.org/t/p/w400";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
