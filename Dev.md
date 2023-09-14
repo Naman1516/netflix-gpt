@@ -29,6 +29,11 @@
 - Embedded the Youtube video and make it autoplay and mute
 - Tailwind classes to make main container look awesome
 - Build secondary component
+- Custom hooks for sections
+- GPT Search
+- GPT Search Bar
+- Multi language Feature
+- Hover effect to movie card
 
 # Features
 
