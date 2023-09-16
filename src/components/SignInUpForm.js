@@ -10,6 +10,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/store/userSlice";
+import { USER_ICON } from "../utils/constants/constants";
 
 const SignInUpForm = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -29,7 +30,7 @@ const SignInUpForm = () => {
     try {
       await updateProfile(user, {
         displayName: name.current.value,
-        photoURL: "https://avatars.githubusercontent.com/u/72248080",
+        photoURL: USER_ICON,
       });
       const { uid, email, displayName, photoURL } = auth.currentUser;
       dispatch(addUser({ uid, email, displayName, photoURL }));
