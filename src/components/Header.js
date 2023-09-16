@@ -64,12 +64,17 @@ const Header = () => {
             {/* large screen */}
             <div className="hidden lg:block">
               <div className="flex gap-6">
+                <img
+                  className="w-12 h-12 rounded"
+                  src={user?.photoURL || USER_ICON}
+                  alt="user icon"
+                />
                 {showGptSearch && <LanguageSelector />}
                 <button
                   className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
                   onClick={toggleGpt}
                 >
-                  {showGptSearch ? "Homepage" : "GPT"}
+                  {showGptSearch ? "Browse" : "GPT"}
                 </button>
                 <button
                   className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
