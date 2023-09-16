@@ -3,16 +3,23 @@ import { language } from "../utils/constants/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants/constants";
-import { addSearchResult } from "../utils/store/gptSlice";
+import {
+  addSearchResult,
+  toggleGptSearchButton,
+} from "../utils/store/gptSlice";
 import ErrorMessage from "./ErrorMessage";
+import SpinnerIcon from "../Icons/SpinnerIcon";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
 
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const curLang = useSelector((store) => store.config.language);
-  const { search, gptSearchPlaceholder: placeholder } = language[curLang];
+  const currentLanguage = useSelector((store) => store.config.language);
+  const isSearchEnabled = useSelector((store) => store.gpt.isSearchEnabled);
+
+  const { search, gptSearchPlaceholder: placeholder } =
+    language[currentLanguage];
 
   const searchText = useRef(null);
 
@@ -29,6 +36,8 @@ const GptSearchBar = () => {
   };
 
   const handleSearch = async () => {
+    if (!isSearchEnabled) return;
+    dispatch(toggleGptSearchButton());
     setErrorMessage(null);
     try {
       const query = `Act as a movie recommendation system and suggest some movies for the query ${searchText.current.value} only give me name of 5 movies separated by comma. No numbering is required. Just names, no list.`;
@@ -46,6 +55,8 @@ const GptSearchBar = () => {
     } catch (error) {
       console.error(error);
       setErrorMessage(error.message);
+    } finally {
+      dispatch(toggleGptSearchButton());
     }
   };
 
@@ -62,11 +73,19 @@ const GptSearchBar = () => {
           ref={searchText}
         />
         <button
-          className="px-4 md:px-0 py-4 w-28 bg-red-500 text-white rounded"
+          className={`px-4 md:px-0 py-4 w-28 bg-red-500 text-white rounded ${
+            !isSearchEnabled ? "bg-red-400" : ""
+          }`}
           onClick={handleSearch}
           type="submit"
+          disabled={!isSearchEnabled}
         >
-          {search}
+          {
+            <span className="flex justify-center items-center">
+              {search}
+              {!isSearchEnabled && <SpinnerIcon height={26} width={26} />}
+            </span>
+          }
         </button>
       </form>
       {errorMessage && (

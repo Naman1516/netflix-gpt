@@ -15,7 +15,7 @@ const LanguageSelector = () => {
   return (
     <div>
       <select
-        className="h-full w-52 md:w-36 px-4 py-1 rounded"
+        className="h-full w-52 lg:w-36 px-4 py-1 rounded"
         onChange={handleLanguageChange}
       >
         {languageOptions.map((el) => (
