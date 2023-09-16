@@ -8,8 +8,8 @@ import { addUser, removeUser } from "../utils/store/userSlice";
 import { toggleGptSearchView } from "../utils/store/gptSlice";
 import LanguageSelector from "./LanguageSelector";
 import { toggleSideMenu } from "../utils/store/headerSlice";
-import CloseIcon from "../Icons/CloseIcon";
-import MenuIcon from "../Icons/MenuIcon";
+import CloseIcon from "./Icons/CloseIcon";
+import MenuIcon from "./Icons/MenuIcon";
 
 const Header = () => {
   const navigate = useNavigate();

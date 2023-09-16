@@ -8,7 +8,7 @@ import {
   toggleGptSearchButton,
 } from "../utils/store/gptSlice";
 import ErrorMessage from "./ErrorMessage";
-import SpinnerIcon from "../Icons/SpinnerIcon";
+import SpinnerIcon from "./Icons/SpinnerIcon";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
