@@ -4,8 +4,8 @@
 - Configured TailwindCSS
 - Header
 - Routing
-- Login Form - Formik
-- Signup Form - Formik
+- Login Form
+- Signup Form
 - Form Validation
 - useRef Hook
 - Firebase Setup
@@ -34,6 +34,8 @@
 - GPT Search Bar
 - Multi language Feature
 - Hover effect to movie card
+- .env
+- Responsive
 
 # Features
 
