@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { APP_LOGO, USER_ICON } from "../utils/constants/constants";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -17,6 +17,7 @@ const Header = () => {
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const isSideMenuOpen = useSelector((store) => store.header.isOpen);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     //good practice
@@ -36,6 +37,22 @@ const Header = () => {
 
     // unsubscribe when component unmounts
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const toggleGpt = () => {
@@ -58,7 +75,13 @@ const Header = () => {
 
   return (
     <div>
-      <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center">
+      <div
+        className={`${
+          isScrolled
+            ? "fixed top-0 bg-black"
+            : "absolute bg-gradient-to-b from-black"
+        } w-screen px-8 py-2 z-50 h-18 flex justify-between items-center transition-transform ease-in-out duration-300`}
+      >
         <img
           className="w-36 md:w-44 cursor-pointer"
           src={APP_LOGO}
@@ -66,7 +89,7 @@ const Header = () => {
           onClick={() => navigate("/")}
         />
         {user && (
-          <div>
+          <div className="flex justify-center items-center">
             {/* large screen */}
             <div className="hidden lg:block">
               <div className="flex gap-6">
@@ -92,11 +115,9 @@ const Header = () => {
             </div>
 
             {/* small screen */}
-            <div className="block lg:hidden">
-              <button onClick={toggleMenu}>
-                <MenuIcon height={40} width={40} />
-              </button>
-            </div>
+            <button onClick={toggleMenu} className="block lg:hidden p-0 m-0">
+              <MenuIcon height={40} width={40} />
+            </button>
           </div>
         )}
       </div>
