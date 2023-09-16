@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
-import GptSearch from "./GptSearch";
+import GptSection from "./GptSection";
 import { useSelector } from "react-redux";
 import useMovieSections from "../utils/custom-hooks/useMovieSections";
 
@@ -14,7 +14,7 @@ const Browse = () => {
     <div>
       <Header />
       {showGptSearch ? (
-        <GptSearch />
+        <GptSection />
       ) : (
         <React.Fragment>
           <MainContainer />

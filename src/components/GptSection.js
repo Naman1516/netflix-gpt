@@ -3,7 +3,7 @@ import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import { BG_IMG } from "../utils/constants/constants";
 
-const GptSearch = () => {
+const GptSection = () => {
   return (
     <div>
       <div className="fixed -z-10">
@@ -20,4 +20,4 @@ const GptSearch = () => {
   );
 };
 
-export default GptSearch;
+export default GptSection;
