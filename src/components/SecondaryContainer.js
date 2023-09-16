@@ -1,16 +1,13 @@
 import React from "react";
 import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
-import useMovieSections from "../utils/custom-hooks/useMovieSections";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
 
-  useMovieSections();
-
   return (
     <div className="bg-black px-12">
-      <div className="-mt-56 z-20 relative">
+      <div className="md:-mt-32 lg:-mt-56 z-20 relative">
         <MovieList
           title={"Now Playing Movie"}
           movies={movies.nowPlayingMovies}
