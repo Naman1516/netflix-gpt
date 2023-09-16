@@ -8,6 +8,8 @@ import { addUser, removeUser } from "../utils/store/userSlice";
 import { toggleGptSearchView } from "../utils/store/gptSlice";
 import LanguageSelector from "./LanguageSelector";
 import { toggleSideMenu } from "../utils/store/headerSlice";
+import CloseIcon from "../Icons/CloseIcon";
+import MenuIcon from "../Icons/MenuIcon";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -69,11 +71,6 @@ const Header = () => {
                 >
                   {showGptSearch ? "Homepage" : "GPT"}
                 </button>
-                <img
-                  className="w-12 h-12 rounded"
-                  src={user?.photoURL || USER_ICON}
-                  alt="user icon"
-                />
                 <button
                   className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
                   onClick={handleSignOut}
@@ -85,8 +82,8 @@ const Header = () => {
 
             {/* small screen */}
             <div className="block lg:hidden">
-              <button className="bg-white" onClick={toggleMenu}>
-                Show
+              <button onClick={toggleMenu}>
+                <MenuIcon height={40} width={40} />
               </button>
             </div>
           </div>
@@ -98,8 +95,8 @@ const Header = () => {
         } `}
       >
         <div className="flex justify-end px-8 py-8">
-          <button className="bg-white" onClick={toggleMenu}>
-            Hide
+          <button onClick={toggleMenu}>
+            <CloseIcon height={40} width={40} />
           </button>
         </div>
         <div className="flex flex-col items-center gap-6 w-screen h-screen px-8 py-8">
