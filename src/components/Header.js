@@ -39,6 +39,7 @@ const Header = () => {
   }, []);
 
   const toggleGpt = () => {
+    if (isSideMenuOpen) toggleMenu();
     dispatch(toggleGptSearchView());
   };
 

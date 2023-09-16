@@ -50,7 +50,7 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="pt-[10%] flex flex-col items-center justify-center">
+    <div className="pt-[20%] md:pt-[10%] flex flex-col items-center justify-center">
       <form
         className="w-2/3 flex justify-center items-center"
         onSubmit={(e) => e.preventDefault()}
@@ -58,11 +58,11 @@ const GptSearchBar = () => {
         <input
           type="text"
           placeholder={placeholder}
-          className="p-4 m-4 w-2/3 rounded"
+          className="p-4 m-4 md:w-2/3 rounded"
           ref={searchText}
         />
         <button
-          className="py-4 w-28 bg-red-500 text-white rounded"
+          className="px-4 md:px-0 py-4 w-28 bg-red-500 text-white rounded"
           onClick={handleSearch}
           type="submit"
         >
@@ -70,7 +70,7 @@ const GptSearchBar = () => {
         </button>
       </form>
       {errorMessage && (
-        <div className="text-white bg-black opacity-70 w-2/3 p-4">
+        <div className="text-white bg-black opacity-70 w-full md:w-2/3 p-4">
           <ErrorMessage message={errorMessage} />
         </div>
       )}
