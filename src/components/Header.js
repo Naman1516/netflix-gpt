@@ -42,6 +42,7 @@ const Header = () => {
 
   const handleSignOut = async () => {
     try {
+      if (isSideMenuOpen) toggleMenu();
       await signOut(auth);
     } catch (error) {
       console.error(error);
@@ -85,38 +86,41 @@ const Header = () => {
             {/* small screen */}
             <div className="block lg:hidden">
               <button className="bg-white" onClick={toggleMenu}>
-                {isSideMenuOpen ? "Hide" : "Show"}
+                Show
               </button>
             </div>
           </div>
         )}
       </div>
-      <div>
-        <div
-          className={`absolute bg-black top-32 right-0 z-50 transform transition-transform ease-in-out duration-3000 ${
-            isSideMenuOpen ? "translate-x-0" : "translate-x-[2000px]"
-          } `}
-        >
-          <div className="flex flex-col items-center gap-6 w-screen h-screen">
-            <img
-              className="w-12 h-12 rounded"
-              src={user?.photoURL || USER_ICON}
-              alt="user icon"
-            />
-            {showGptSearch && <LanguageSelector />}
-            <button
-              className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-full"
-              onClick={toggleGpt}
-            >
-              {showGptSearch ? "Homepage" : "GPT"}
-            </button>
-            <button
-              className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-full"
-              onClick={handleSignOut}
-            >
-              Sign Out
-            </button>
-          </div>
+      <div
+        className={`fixed bg-black bg-opacity-95 right-0 z-50 transform transition-transform ease-in-out duration-300 ${
+          isSideMenuOpen ? "translate-x-0" : "translate-x-[2000px]"
+        } `}
+      >
+        <div className="flex justify-end px-8 py-8">
+          <button className="bg-white" onClick={toggleMenu}>
+            Hide
+          </button>
+        </div>
+        <div className="flex flex-col items-center gap-6 w-screen h-screen px-8 py-8">
+          <img
+            className="w-12 h-12 rounded"
+            src={user?.photoURL || USER_ICON}
+            alt="user icon"
+          />
+          {showGptSearch && <LanguageSelector />}
+          <button
+            className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
+            onClick={toggleGpt}
+          >
+            {showGptSearch ? "Homepage" : "GPT"}
+          </button>
+          <button
+            className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </button>
         </div>
       </div>
     </div>
