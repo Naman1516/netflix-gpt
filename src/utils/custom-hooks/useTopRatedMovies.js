@@ -11,7 +11,6 @@ const useTopRatedMovies = () => {
       const response = await fetch(endpoint, API_OPTIONS);
 
       const data = await response.json();
-      console.log("Top Rated: ", data.results);
       dispatch(addTopRatedMovies(data.results));
     } catch (error) {
       console.error(error);

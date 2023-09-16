@@ -11,7 +11,6 @@ const usePopularMovies = () => {
       const response = await fetch(endpoint, API_OPTIONS);
 
       const data = await response.json();
-      console.log("Popular: ", data.results);
       dispatch(addPouplarMovies(data.results));
     } catch (error) {
       console.error(error);

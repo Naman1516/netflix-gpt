@@ -49,13 +49,11 @@ const SignInUpForm = () => {
       );
 
       const user = userCredential.user;
-      console.log({ user });
       updateUserProfile(user);
       setErrorMessage(null);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log({ errorCode, errorMessage });
       setErrorMessage(errorCode + "-" + errorMessage);
     }
   };
@@ -69,12 +67,10 @@ const SignInUpForm = () => {
       );
 
       const user = userCredential.user;
-      console.log({ user });
       setErrorMessage(null);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log({ errorCode, errorMessage });
       setErrorMessage(errorCode + "-" + errorMessage);
     }
   };

@@ -34,7 +34,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
-  const handleGptSearchClick = () => {
+  const toggleGpt = () => {
     dispatch(toggleGptSearchView());
   };
 
@@ -54,7 +54,7 @@ const Header = () => {
           {showGptSearch && <LanguageSelector />}
           <button
             className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
-            onClick={handleGptSearchClick}
+            onClick={toggleGpt}
           >
             {showGptSearch ? "Homepage" : "GPT"}
           </button>
