@@ -103,7 +103,7 @@ const SignInUpForm = () => {
 
   return (
     <div>
-      <form className="absolute p-12 bg-black w-3/12 mt-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
+      <form className="absolute p-12 bg-black max-w-sm mt-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
