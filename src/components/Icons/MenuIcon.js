@@ -9,7 +9,7 @@ const MenuIcon = ({ height, width }) => {
         version="1.1"
         x="0px"
         y="0px"
-        viewBox="0 0 100 125"
+        viewBox="0 0 100 100"
         xmlSpace="preserve"
         height={height}
         width={width}
