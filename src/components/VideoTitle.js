@@ -1,4 +1,6 @@
 import React from "react";
+import PlayIcon from "../Icons/PlayIcon";
+import MoreInfoIcon from "../Icons/MoreInfoIcon";
 
 const VideoTitle = ({ title, overview }) => {
   return (
@@ -8,11 +10,17 @@ const VideoTitle = ({ title, overview }) => {
       </h2>
       <p className="hidden lg:block py-6 text-lg w-1/2">{overview}</p>
       <div className="mt-6 lg:mt-0">
-        <button className="bg-white text-black p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg rounded-lg hover:bg-opacity-80">
-          ▶️ Play
+        <button className="bg-white text-black p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg rounded hover:bg-opacity-80">
+          <div className="flex items-center">
+            <PlayIcon height={30} width={30} />
+            <span>Play</span>
+          </div>
         </button>
-        <button className="ml-2 bg-gray-500 text-white p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg bg-opacity-50 rounded-lg">
-          ℹ More Info
+        <button className="ml-2 bg-gray-500 text-white p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg bg-opacity-50 hover:bg-opacity-30 rounded">
+          <div className="flex items-center">
+            <MoreInfoIcon height={30} width={30} />
+            <span>More Info</span>
+          </div>
         </button>
       </div>
     </div>

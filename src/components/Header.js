@@ -59,7 +59,12 @@ const Header = () => {
   return (
     <div>
       <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between items-center">
-        <img className="w-36 md:w-44" src={APP_LOGO} alt="Netflix Logo" />
+        <img
+          className="w-36 md:w-44 cursor-pointer"
+          src={APP_LOGO}
+          alt="Netflix Logo"
+          onClick={() => navigate("/")}
+        />
         {user && (
           <div>
             {/* large screen */}
