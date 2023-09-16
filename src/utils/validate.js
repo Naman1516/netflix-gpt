@@ -26,7 +26,7 @@ export const validateUserData = (email, password, name, isSignInForm) => {
   }
 
   if (!validatePassword(password)) {
-    response.message = "Invalid Password!";
+    response.message = "Try a Strong Password!";
     return response;
   }
 
