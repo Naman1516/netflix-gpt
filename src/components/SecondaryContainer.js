@@ -9,14 +9,26 @@ const SecondaryContainer = () => {
     <div className="bg-black pl-6 md:px-12">
       <div className="md:-mt-32 lg:-mt-56 z-20 relative">
         <MovieList
-        key={"Now Playing Movie"}
+          key={"Now Playing Movie"}
           title={"Now Playing Movie"}
           movies={movies.nowPlayingMovies}
         />
       </div>
-      <MovieList key={"Trending"} title={"Trending"} movies={movies.trendingMovies} />
-      <MovieList key={"Popular"} title={"Popular"} movies={movies.popularMovies} />
-      <MovieList key={"Top Rated"} title={"Top Rated"} movies={movies.topRatedMovies} />
+      <MovieList
+        key={"Trending"}
+        title={"Trending"}
+        movies={movies.trendingMovies}
+      />
+      <MovieList
+        key={"Popular"}
+        title={"Popular"}
+        movies={movies.popularMovies}
+      />
+      <MovieList
+        key={"Top Rated"}
+        title={"Top Rated"}
+        movies={movies.topRatedMovies}
+      />
     </div>
   );
 };
