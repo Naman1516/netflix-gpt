@@ -24,7 +24,7 @@ const MovieCard = ({ alt, posterPath, voteAvg, voteCount }) => {
           <div className="flex items-center text-sm mt-2">
             <VoteIcon height={13} width={13} />
             <span className="ml-1">
-              {voteAvg} &nbsp; | &nbsp; {voteCount}
+              {parseFloat(voteAvg).toFixed(1)} &nbsp; | &nbsp; {voteCount}
             </span>
           </div>
         </div>

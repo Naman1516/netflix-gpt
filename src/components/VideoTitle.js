@@ -19,7 +19,7 @@ const VideoTitle = ({ title, overview }) => {
   // }, []);
 
   return (
-    <div className="w-screen aspect-video pt-[20%] px-12 md:px-24 absolute text-white">
+    <div className="w-screen aspect-video pt-[20%] px-12 md:px-24 absolute text-white z-20">
       <h2 className="text-xl md:text-5xl lg:text-6xl font-bold mt-4 md:mt-0 md:w-2/3">
         {title}
       </h2>
