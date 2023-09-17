@@ -9,6 +9,7 @@ import LanguageSelector from "./LanguageSelector";
 import { toggleSideMenu } from "../utils/store/headerSlice";
 import CloseIcon from "./Icons/CloseIcon";
 import MenuIcon from "./Icons/MenuIcon";
+import Logo from "./Logo";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -76,12 +77,7 @@ const Header = () => {
             : "absolute bg-gradient-to-b from-[#141414]"
         } w-screen px-8 py-2 z-50 h-18 flex justify-between items-center transition-transform ease-in-out duration-300`}
       >
-        <img
-          className="w-36 cursor-pointer"
-          src={APP_LOGO}
-          alt="Netflix Logo"
-          onClick={() => handleNavigation("/")}
-        />
+        <Logo />
         {user && (
           <div className="flex justify-center items-center">
             <div className="hidden lg:block">
@@ -113,7 +109,12 @@ const Header = () => {
               </div>
             </div>
             <button onClick={toggleMenu} className="block lg:hidden p-0 m-0">
-              <MenuIcon height={40} width={40} />
+              <span className="md:hidden">
+                <MenuIcon height={20} width={20} />
+              </span>
+              <span className="hidden md:block">
+                <MenuIcon height={40} width={40} />
+              </span>
             </button>
           </div>
         )}
