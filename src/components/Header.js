@@ -17,7 +17,7 @@ const Header = () => {
   const isSideMenuOpen = useSelector((store) => store.header.isOpen);
 
   const user = useSelector((store) => store.user);
-  const showGptSearch = location.pathname === "/suggest";
+  const showLanguageSelector = location.pathname === "/suggest";
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -84,31 +84,33 @@ const Header = () => {
         />
         {user && (
           <div className="flex justify-center items-center">
-            <div className="hidden lg:block flex gap-6">
-              <img
-                className="w-12 h-12 rounded"
-                src={user?.photoURL || USER_ICON}
-                alt="user icon"
-              />
-              {showGptSearch && <LanguageSelector />}
-              <button
-                className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
-                onClick={() => handleNavigation("/browse")}
-              >
-                Browse
-              </button>
-              <button
-                className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
-                onClick={() => handleNavigation("/suggest")}
-              >
-                Suggest
-              </button>
-              <button
-                className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </button>
+            <div className="hidden lg:block">
+              <div className="flex gap-6">
+                <img
+                  className="w-12 h-12 rounded"
+                  src={user?.photoURL || USER_ICON}
+                  alt="user icon"
+                />
+                {showLanguageSelector && <LanguageSelector />}
+                <button
+                  className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                  onClick={() => handleNavigation("/browse")}
+                >
+                  Browse
+                </button>
+                <button
+                  className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                  onClick={() => handleNavigation("/suggest")}
+                >
+                  Suggest
+                </button>
+                <button
+                  className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </button>
+              </div>
             </div>
             <button onClick={toggleMenu} className="block lg:hidden p-0 m-0">
               <MenuIcon height={40} width={40} />
@@ -132,7 +134,7 @@ const Header = () => {
             src={user?.photoURL || USER_ICON}
             alt="user icon"
           />
-          {showGptSearch && <LanguageSelector />}
+          {showLanguageSelector && <LanguageSelector />}
           <button
             className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
             onClick={() => handleNavigation("/browse")}
