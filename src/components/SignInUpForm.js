@@ -11,10 +11,12 @@ import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/store/userSlice";
 import { USER_ICON } from "../utils/constants/constants";
+import SpinnerIcon from "./Icons/SpinnerIcon";
 
 const SignInUpForm = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -42,6 +44,7 @@ const SignInUpForm = () => {
   };
 
   const signUp = async () => {
+    setIsLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -56,10 +59,13 @@ const SignInUpForm = () => {
       const errorCode = error.code;
       const errorMessage = error.message;
       setErrorMessage(errorCode + "-" + errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const signIn = async () => {
+    setIsLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -73,6 +79,8 @@ const SignInUpForm = () => {
       const errorCode = error.code;
       const errorMessage = error.message;
       setErrorMessage(errorCode + "-" + errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -132,10 +140,14 @@ const SignInUpForm = () => {
           ref={password}
         />
         <button
-          className="p-4 my-6 bg-red-600 w-full rounded-lg"
+          className="p-4 my-6 bg-red-500 hover:bg-red-600 w-full rounded-lg disabled:bg-red-400"
           onClick={handleButtonClick}
+          disabled={isLoading}
         >
-          {isSignInForm ? "Sign In" : "Sign Up"}
+          <span className="flex justify-center items-center">
+            {isSignInForm ? "Sign In" : "Sign Up"}
+            {isLoading && <SpinnerIcon height={24} width={24} />}
+          </span>
         </button>
         <p className="py-4">
           {isSignInForm ? "New to Netflix?" : "Already an user?"}

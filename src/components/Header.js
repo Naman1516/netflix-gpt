@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { APP_LOGO, USER_ICON } from "../utils/constants/constants";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
-import { toggleGptSearchView } from "../utils/store/gptSlice";
 import LanguageSelector from "./LanguageSelector";
 import { toggleSideMenu } from "../utils/store/headerSlice";
 import CloseIcon from "./Icons/CloseIcon";
@@ -14,38 +13,33 @@ import MenuIcon from "./Icons/MenuIcon";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
-  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const location = useLocation();
   const isSideMenuOpen = useSelector((store) => store.header.isOpen);
+
+  const user = useSelector((store) => store.user);
+  const showGptSearch = location.pathname === "/suggest";
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    //good practice
-    //on call, will remove onAuthStateChanged event listener
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        //signin/up
         const { uid, email, displayName, photoURL } = user;
         dispatch(addUser({ uid, email, displayName, photoURL }));
-        navigate("/browse");
+        if (location.pathname === "/") {
+          navigate("/browse");
+        }
       } else {
-        //signout
         dispatch(removeUser());
         navigate("/");
       }
     });
 
-    // unsubscribe when component unmounts
     return () => unsubscribe();
-  }, []);
+  }, [dispatch, location.pathname, navigate]);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -55,10 +49,9 @@ const Header = () => {
     };
   }, []);
 
-  const toggleGpt = () => {
-    if (isSideMenuOpen) toggleMenu();
-    dispatch(toggleGptSearchView());
-  };
+  const toggleMenu = useCallback(() => {
+    dispatch(toggleSideMenu());
+  }, [dispatch]);
 
   const handleSignOut = async () => {
     try {
@@ -69,8 +62,9 @@ const Header = () => {
     }
   };
 
-  const toggleMenu = () => {
-    dispatch(toggleSideMenu());
+  const handleNavigation = (path) => {
+    navigate(path);
+    if (isSideMenuOpen) toggleMenu();
   };
 
   return (
@@ -86,35 +80,36 @@ const Header = () => {
           className="w-36 md:w-44 cursor-pointer"
           src={APP_LOGO}
           alt="Netflix Logo"
-          onClick={() => navigate("/")}
+          onClick={() => handleNavigation("/")}
         />
         {user && (
           <div className="flex justify-center items-center">
-            {/* large screen */}
-            <div className="hidden lg:block">
-              <div className="flex gap-6">
-                <img
-                  className="w-12 h-12 rounded"
-                  src={user?.photoURL || USER_ICON}
-                  alt="user icon"
-                />
-                {showGptSearch && <LanguageSelector />}
-                <button
-                  className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
-                  onClick={toggleGpt}
-                >
-                  {showGptSearch ? "Browse" : "GPT"}
-                </button>
-                <button
-                  className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
-                  onClick={handleSignOut}
-                >
-                  Sign Out
-                </button>
-              </div>
+            <div className="hidden lg:block flex gap-6">
+              <img
+                className="w-12 h-12 rounded"
+                src={user?.photoURL || USER_ICON}
+                alt="user icon"
+              />
+              {showGptSearch && <LanguageSelector />}
+              <button
+                className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                onClick={() => handleNavigation("/browse")}
+              >
+                Browse
+              </button>
+              <button
+                className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                onClick={() => handleNavigation("/suggest")}
+              >
+                Suggest
+              </button>
+              <button
+                className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                onClick={handleSignOut}
+              >
+                Sign Out
+              </button>
             </div>
-
-            {/* small screen */}
             <button onClick={toggleMenu} className="block lg:hidden p-0 m-0">
               <MenuIcon height={40} width={40} />
             </button>
@@ -140,9 +135,15 @@ const Header = () => {
           {showGptSearch && <LanguageSelector />}
           <button
             className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
-            onClick={toggleGpt}
+            onClick={() => handleNavigation("/browse")}
           >
-            {showGptSearch ? "Homepage" : "GPT"}
+            Browse
+          </button>
+          <button
+            className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
+            onClick={() => handleNavigation("/suggest")}
+          >
+            Suggest
           </button>
           <button
             className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"

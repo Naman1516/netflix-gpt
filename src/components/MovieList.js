@@ -12,7 +12,7 @@ const MovieList = ({ title, movies }) => {
         {title}
       </h2>
       <div
-        className="flex overflow-x-scroll no-scrollbar scroll-smooth"
+        className="flex overflow-y-hidden overflow-x-scroll no-scrollbar scroll-smooth"
         ref={scrollableDivRef}
       >
         <div className="flex gap-6 p-2">

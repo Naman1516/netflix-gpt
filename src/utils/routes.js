@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Login from "../components/Login";
 import Browse from "../components/Browse";
+import GptSection from "../components/GptSection";
 
 export const AppRouter = createBrowserRouter([
   {
@@ -11,5 +12,9 @@ export const AppRouter = createBrowserRouter([
   {
     path: "/browse",
     element: <Browse />,
+  },
+  {
+    path: "/suggest",
+    element: <GptSection />,
   },
 ]);
