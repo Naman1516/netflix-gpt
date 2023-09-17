@@ -126,7 +126,13 @@ const Header = () => {
       >
         <div className="flex justify-end px-8 py-8">
           <button onClick={toggleMenu}>
-            <CloseIcon height={40} width={40} />
+            <span className="md:hidden">
+                <CloseIcon height={20} width={20} />
+              </span>
+              <span className="hidden md:block">
+                <CloseIcon height={40} width={40} />
+              </span>
+
           </button>
         </div>
         <div className="flex flex-col items-center gap-6 w-screen h-screen px-8 py-8">
