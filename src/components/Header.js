@@ -39,7 +39,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      setIsScrolled(window.scrollY > 200);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -72,12 +72,12 @@ const Header = () => {
       <div
         className={`${
           isScrolled
-            ? "fixed top-0 bg-black"
-            : "absolute bg-gradient-to-b from-black"
+            ? "fixed top-0 bg-[#141414]"
+            : "absolute bg-gradient-to-b from-[#141414]"
         } w-screen px-8 py-2 z-50 h-18 flex justify-between items-center transition-transform ease-in-out duration-300`}
       >
         <img
-          className="w-36 md:w-44 cursor-pointer"
+          className="w-36 cursor-pointer"
           src={APP_LOGO}
           alt="Netflix Logo"
           onClick={() => handleNavigation("/")}
@@ -119,7 +119,7 @@ const Header = () => {
         )}
       </div>
       <div
-        className={`fixed bg-black bg-opacity-95 right-0 z-50 transform transition-transform ease-in-out duration-300 ${
+        className={`fixed bg-[#141414] bg-opacity-95 right-0 z-50 transform transition-transform ease-in-out duration-300 ${
           isSideMenuOpen ? "translate-x-0" : "translate-x-[2000px]"
         } `}
       >

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PlayIcon from "./Icons/PlayIcon";
 import MoreInfoIcon from "./Icons/MoreInfoIcon";
 import { useSelector } from "react-redux";
@@ -6,13 +6,26 @@ import { Link } from "react-router-dom";
 
 const VideoTitle = ({ title, overview }) => {
   const trailer = useSelector((store) => store.movies.trailer);
+  const [showDes, setShowDesc] = useState(true);
+
+  // const hideDesc = () => {
+  //   setTimeout(() => {
+  //     setShowDesc(false);
+  //   }, 2);
+  // };
+
+  // useEffect(() => {
+  //   hideDesc();
+  // }, []);
 
   return (
-    <div className="w-screen aspect-video pt-[20%] px-12 md:px-24 absolute text-white bg-gradient-to-r from-black">
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 md:mt-0">
+    <div className="w-screen aspect-video pt-[20%] px-12 md:px-24 absolute text-white">
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 md:mt-0 md:w-2/3">
         {title}
       </h2>
-      <p className="hidden lg:block py-6 text-lg w-1/2">{overview}</p>
+      {showDes && (
+        <p className="hidden lg:block py-6 text-lg w-2/3">{overview}</p>
+      )}
       <div className="mt-6 lg:mt-0 flex">
         <a
           className="bg-white block text-black p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg rounded hover:bg-opacity-80"

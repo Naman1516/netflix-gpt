@@ -9,7 +9,8 @@ const MainContainer = () => {
   // dont render anything (early return)
   if (!movies) return;
 
-  const mainMovie = movies[0];
+  const index = Math.floor(Math.random() * movies.length);
+  const mainMovie = movies[index];
 
   const { id, original_title: title, overview } = mainMovie;
 
