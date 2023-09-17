@@ -21,7 +21,9 @@ const MovieList = ({ title, movies }) => {
               <MovieCard
                 key={movie.title}
                 alt={movie.title}
-                poster_path={movie.poster_path}
+                posterPath={movie.poster_path}
+                voteAvg={movie.vote_average}
+                voteCount={movie.vote_count}
               />
             </div>
           ))}
