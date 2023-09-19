@@ -1,52 +1,72 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import PlayIcon from "./Icons/PlayIcon";
 import MoreInfoIcon from "./Icons/MoreInfoIcon";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleShowDesc } from "../utils/store/moviesSlice";
 
 const VideoTitle = ({ title, overview }) => {
+  const dispatch = useDispatch();
   const trailer = useSelector((store) => store.movies.trailer);
-  const [showDes, setShowDesc] = useState(true);
+  const showDescription = useSelector((store) => store.movies.showDesc);
 
-  // const hideDesc = () => {
-  //   setTimeout(() => {
-  //     setShowDesc(false);
-  //   }, 2);
-  // };
+  const hideDesc = useCallback(() => {
+    setTimeout(() => {
+      dispatch(toggleShowDesc(false));
+    }, 5000);
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   hideDesc();
-  // }, []);
+  const showDesc = useCallback(() => {
+    setTimeout(() => {
+      dispatch(toggleShowDesc(true));
+    }, 20000);
+  }, [dispatch]);
+
+  useEffect(() => {
+    hideDesc();
+    showDesc();
+  }, [hideDesc, showDesc]);
+
+  const openYouTubeVideo = useCallback(() => {
+    const videoKey = trailer?.key;
+    if (videoKey) {
+      const youtubeUrl = `https://www.youtube.com/watch?v=${videoKey}`;
+      window.open(youtubeUrl, "_blank", "noopener,noreferrer");
+    }
+  }, [trailer?.key]);
 
   return (
     <div className="w-screen aspect-video pt-[20%] px-12 md:px-24 absolute text-white z-20">
-      <h2 className="text-xl md:text-5xl lg:text-6xl font-bold mt-4 md:mt-0 md:w-2/3">
+      <h2
+        className={`text-xl font-bold mt-4 md:mt-0 md:max-w-prose transition-all duration-500 ease-in-out ${
+          showDescription
+            ? "md:text-5xl lg:text-6xl"
+            : "text-xl md:text-3xl lg:text-4xl"
+        }`}
+      >
         {title}
       </h2>
-      {showDes && (
-        <p className="hidden lg:block py-6 text-lg w-2/3">{overview}</p>
-      )}
+      <p
+        className={`py-6 text-md max-w-prose transition-all duration-500 ease-in-out ${
+          showDescription ? "hidden lg:block" : "hidden"
+        }`}
+      >
+        {overview}
+      </p>
       <div className="mt-6 lg:mt-0 flex">
-        <a
-          className="bg-white block text-black p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg rounded hover:bg-opacity-80"
-          href={`https://www.youtube.com/watch?v=${trailer?.key}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          className="bg-white md:text-lg bg-opacity-80 hover:bg-opacity-60 rounded-md p-2 flex items-center space-x-1 text-black font-semibold pl-3 pr-4 text-lg"
+          onClick={openYouTubeVideo}
         >
-          <span className="flex items-center">
-            <PlayIcon height={30} width={30} />
-            <span>Play</span>
-          </span>
-        </a>
-        <Link
-          className="block ml-2 bg-gray-500 text-white p-1 md:p-3 lg:p-4 px-3 md:px-7 lg:px-10 md:text-lg bg-opacity-50 hover:bg-opacity-30 rounded"
-          to="/"
+          <PlayIcon height={30} width={30} />
+          <span className="pr-2">Play</span>
+        </button>
+        <button
+          className="ml-2 bg-gray-500 md:text-lg bg-opacity-50 hover:bg-opacity-30 rounded-md p-2 flex items-center space-x-1 pl-3 pr-4 text-white font-semibold text-lg"
+          onClick={openYouTubeVideo}
         >
-          <span className="flex items-center">
-            <MoreInfoIcon height={30} width={30} />
-            <span>More Info</span>
-          </span>
-        </Link>
+          <MoreInfoIcon height={30} width={30} />
+          <span>More Info</span>
+        </button>
       </div>
     </div>
   );

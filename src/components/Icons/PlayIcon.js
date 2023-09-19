@@ -15,7 +15,7 @@ const PlayIcon = ({ height, width }) => {
       width={width}
     >
       <g>
-        <polygon points="69,50 34,23.347 34,76.653  " />
+        <polygon points="69,50 34,23.347 34,76.653" />
       </g>
     </svg>
   );
