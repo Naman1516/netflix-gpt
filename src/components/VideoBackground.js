@@ -8,7 +8,7 @@ const VideoBackground = ({ movieId }) => {
 
   return (
     <div className="relative w-screen lg:h-screen z-10">
-      <div className="absolute h-[120vh] inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
+      <div className="absolute lg:h-[120vh] inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
       <iframe
         className="w-screen aspect-video"
         src={
