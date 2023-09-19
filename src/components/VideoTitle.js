@@ -54,7 +54,7 @@ const VideoTitle = ({ title, overview }) => {
       </p>
       <div className="mt-6 lg:mt-0 flex">
         <button
-          className="bg-white text-sm md:text-lg bg-opacity-80 hover:bg-opacity-60 rounded-md p-2 flex items-center space-x-1 text-black font-semibold pl-3 pr-4"
+          className="bg-white text-sm md:text-lg bg-opacity-95 hover:bg-opacity-60 rounded-md p-2 flex items-center space-x-1 text-black font-semibold pl-3 pr-4"
           onClick={openYouTubeVideo}
         >
           <PlayIcon height={30} width={30} />
