@@ -35,7 +35,7 @@ const VideoTitle = ({ title, overview }) => {
   }, [trailer?.key]);
 
   return (
-    <div className="w-screen aspect-video pt-[10%] md:pt-[20%] px-12 md:px-24 absolute text-white z-20">
+    <div className="w-screen aspect-video pt-[15%] md:pt-[20%] px-12 md:px-24 absolute text-white z-20">
       <h2
         className={`text-xl font-bold my-2 md:my-4 md:max-w-prose transition-all duration-500 ease-in-out ${
           showDescription
