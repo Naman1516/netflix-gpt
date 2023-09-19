@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { APP_LOGO, USER_ICON } from "../utils/constants/constants";
+import { USER_ICON } from "../utils/constants/constants";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -110,7 +110,7 @@ const Header = () => {
             </div>
             <button onClick={toggleMenu} className="block lg:hidden p-0 m-0">
               <span className="md:hidden">
-                <MenuIcon height={20} width={20} />
+                <MenuIcon height={25} width={25} />
               </span>
               <span className="hidden md:block">
                 <MenuIcon height={40} width={40} />
@@ -127,12 +127,11 @@ const Header = () => {
         <div className="flex justify-end px-8 py-8">
           <button onClick={toggleMenu}>
             <span className="md:hidden">
-                <CloseIcon height={20} width={20} />
-              </span>
-              <span className="hidden md:block">
-                <CloseIcon height={40} width={40} />
-              </span>
-
+              <CloseIcon height={25} width={25} />
+            </span>
+            <span className="hidden md:block">
+              <CloseIcon height={40} width={40} />
+            </span>
           </button>
         </div>
         <div className="flex flex-col items-center gap-6 w-screen h-screen px-8 py-8">

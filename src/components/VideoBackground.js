@@ -7,10 +7,10 @@ const VideoBackground = ({ movieId }) => {
   useGetMovieTrailer(movieId);
 
   return (
-    <div className="relative w-screen z-10">
+    <div className="relative w-screen h-screen z-10">
       <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
       <iframe
-        className="w-screen aspect-video"
+        className="w-screen h-screen aspect-video"
         src={
           "https://www.youtube.com/embed/" +
           trailerInfo?.key +
