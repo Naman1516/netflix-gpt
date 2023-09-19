@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { USER_ICON } from "../utils/constants/constants";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/store/userSlice";
 import LanguageSelector from "./LanguageSelector";
@@ -10,8 +10,6 @@ import { toggleSideMenu } from "../utils/store/headerSlice";
 import CloseIcon from "./Icons/CloseIcon";
 import MenuIcon from "./Icons/MenuIcon";
 import Logo from "./Logo";
-import HeaderMainDropdown from "./HeaderMainDropdown";
-import HeaderSearch from "./HeaderSearch";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -70,17 +68,6 @@ const Header = () => {
     if (isSideMenuOpen) toggleMenu();
   };
 
-  const headerMenuItems = [
-    {
-      name: "Browse",
-      link: "/browse",
-    },
-    {
-      name: "Suggest",
-      link: "/suggest",
-    },
-  ];
-
   return (
     <div>
       <div
@@ -90,31 +77,35 @@ const Header = () => {
             : "absolute bg-gradient-to-b from-[#141414]"
         } w-screen px-8 py-2 z-50 h-18 flex justify-between items-center transition-transform ease-in-out duration-300`}
       >
-        <div className="flex justify-center items-center">
-          <Logo />
-          <div className="hidden lg:flex ml-10 gap-6">
-            {headerMenuItems.map((item) => (
-              <NavLink
-                to={item.link}
-                className={({ isActive }) =>
-                  `${
-                    isActive ? "font-semibold" : "hover:underline"
-                  } text-white text-sm`
-                }
-              >
-                {item.name}
-              </NavLink>
-            ))}
-          </div>
-        </div>
-
+        <Logo />
         {user && (
           <div className="flex justify-center items-center">
             <div className="hidden lg:block">
-              <div className="flex justify-center items-center gap-6">
+              <div className="flex gap-6">
+                <img
+                  className="w-12 h-12 rounded"
+                  src={user?.photoURL || USER_ICON}
+                  alt="user icon"
+                />
                 {showLanguageSelector && <LanguageSelector />}
-                <HeaderSearch />
-                <HeaderMainDropdown handleSignOut={handleSignOut} />
+                <button
+                  className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                  onClick={() => handleNavigation("/browse")}
+                >
+                  Browse
+                </button>
+                <button
+                  className="text-white border w-36 border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                  onClick={() => handleNavigation("/suggest")}
+                >
+                  Suggest
+                </button>
+                <button
+                  className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500"
+                  onClick={handleSignOut}
+                >
+                  Sign Out
+                </button>
               </div>
             </div>
             <button onClick={toggleMenu} className="block lg:hidden p-0 m-0">
@@ -150,18 +141,18 @@ const Header = () => {
             alt="user icon"
           />
           {showLanguageSelector && <LanguageSelector />}
-          <NavLink
-            to="/browse"
-            className={({ isActive }) => (isActive ? "text-red-900" : "")}
+          <button
+            className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
+            onClick={() => handleNavigation("/browse")}
           >
             Browse
-          </NavLink>
-          <NavLink
+          </button>
+          <button
             className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
-            to={"/suggest"}
+            onClick={() => handleNavigation("/suggest")}
           >
             Suggest
-          </NavLink>
+          </button>
           <button
             className="text-white border border-red-500 rounded px-4 py-1 hover:bg-red-500 w-52"
             onClick={handleSignOut}
