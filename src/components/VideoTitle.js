@@ -37,7 +37,7 @@ const VideoTitle = ({ title, overview }) => {
   return (
     <div className="w-screen aspect-video pt-[20%] px-12 md:px-24 absolute text-white z-20">
       <h2
-        className={`text-xl font-bold mt-4 md:mt-0 md:max-w-prose transition-all duration-500 ease-in-out ${
+        className={`text-xl font-bold my-4 md:mt-0 md:max-w-prose transition-all duration-500 ease-in-out ${
           showDescription
             ? "md:text-5xl lg:text-6xl"
             : "text-xl md:text-3xl lg:text-4xl"
@@ -46,11 +46,11 @@ const VideoTitle = ({ title, overview }) => {
         {title}
       </h2>
       <p
-        className={`py-6 text-md max-w-prose transition-all duration-500 ease-in-out ${
+        className={`my-4 text-md max-w-prose transition-all duration-500 ease-in-out ${
           showDescription ? "hidden lg:block" : "hidden"
         }`}
       >
-        {overview}
+        {overview.length > 220 ? overview.split(". ")[0] + "." : overview}
       </p>
       <div className="mt-6 lg:mt-0 flex">
         <button
