@@ -18,7 +18,7 @@ const VideoTitle = ({ title, overview }) => {
   const showDesc = useCallback(() => {
     setTimeout(() => {
       dispatch(toggleShowDesc(true));
-    }, 20000);
+    }, 35000);
   }, [dispatch]);
 
   useEffect(() => {
