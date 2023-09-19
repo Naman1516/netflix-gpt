@@ -3,6 +3,7 @@ import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import useMovieSections from "../utils/custom-hooks/useMovieSections";
+import Footer from "./Footer";
 
 const Browse = () => {
   useMovieSections();
@@ -12,6 +13,7 @@ const Browse = () => {
       <Header />
       <MainContainer />
       <SecondaryContainer />
+      <Footer />
     </div>
   );
 };
