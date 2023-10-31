@@ -4,6 +4,7 @@ import moviesReducer from "./moviesSlice";
 import gptReducer from "./gptSlice";
 import configReducer from "./configSlice";
 import headerReducer from "./headerSlice";
+import moreInfoModal from "./moreInfoModal";
 
 const appStore = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const appStore = configureStore({
     movies: moviesReducer,
     gpt: gptReducer,
     config: configReducer,
-    header: headerReducer
+    header: headerReducer,
+    moreInfoModal: moreInfoModal,
   },
 });
 

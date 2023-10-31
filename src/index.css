@@ -11,3 +11,20 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+@keyframes pulse-once {
+  0% {
+    opacity: 0;
+    transform: scaleX(0); /* Start with no width */
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1); /* Return to normal width (100%) */
+  }
+}
+
+/* In your CSS or stylesheets */
+.animate-pulse-once {
+  animation: pulse-once 0.25s ease-in-out; /* Adjust the duration and timing function as needed */
+  animation-iteration-count: 1; /* Set to 1 to make it play once */
+}

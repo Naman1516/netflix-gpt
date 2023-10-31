@@ -19,7 +19,8 @@ const MovieList = ({ title, movies }) => {
           {movies?.map((movie) => (
             <div>
               <MovieCard
-                key={movie.title}
+                id={movie.id}
+                key={movie.id}
                 alt={movie.title}
                 posterPath={movie.poster_path}
                 voteAvg={movie.vote_average}

@@ -9,7 +9,7 @@ const moviesSlice = createSlice({
     topRatedMovies: null,
     trendingMovies: null,
     genres: null,
-    showDesc: true
+    showDesc: true,
   },
   reducers: {
     addNowPlayingMovies: (state, action) => {
@@ -32,8 +32,7 @@ const moviesSlice = createSlice({
     },
     toggleShowDesc: (state, action) => {
       state.showDesc = action.payload;
-    }
-  },
+    }  },
 });
 
 export const {

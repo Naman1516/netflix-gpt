@@ -12,7 +12,6 @@ const useGetMovieGenre = () => {
       const response = await fetch(endpoint, API_OPTIONS);
 
       const data = await response.json();
-      console.log({ data });
       dispatch(addGenre(data.genres));
     } catch (error) {
       console.error(error);

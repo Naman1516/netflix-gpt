@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   IMAGE_CDN,
   MOVIE_CARD_PLACEHOLDER,
 } from "../utils/constants/constants";
-import VoteIcon from "./Icons/VoteIcon";
+import MovieCardHover from "./MovieCardHover";
 
-const MovieCard = ({ alt, posterPath, voteAvg, voteCount }) => {
+const MovieCard = ({ id, alt, posterPath, voteAvg, voteCount }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
-    <div className="w-36 md:w-44 lg:w-56 cursor-pointer relative group">
-      <div className="relative transform transition-transform duration-300 group-hover:scale-110 rounded">
+    <div
+      className="w-36 md:w-44 lg:w-56 cursor-pointer relative group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="relative transform transition-transform duration-300 group-hover:scale-110 rounded group-hover:z-30">
         <img
           alt={alt}
           src={
@@ -18,16 +31,14 @@ const MovieCard = ({ alt, posterPath, voteAvg, voteCount }) => {
           }
           className="w-full h-full rounded"
         />
-        <div className="hidden group-hover:block absolute inset-0 bg-black opacity-50 rounded"></div>
-        <div className="hidden group-hover:block text-white bottom-10 mx-4 absolute z-10 rounded">
-          <h3 className="text-md md:text-lg font-bold ">{alt}</h3>
-          <div className="flex items-center text-sm mt-2">
-            <VoteIcon height={13} width={13} />
-            <span className="ml-1">
-              {parseFloat(voteAvg).toFixed(1)} &nbsp; | &nbsp; {voteCount}
-            </span>
-          </div>
-        </div>
+        {isHovered && (
+          <MovieCardHover
+            id={id}
+            alt={alt}
+            voteAvg={voteAvg}
+            voteCount={voteCount}
+          />
+        )}
       </div>
     </div>
   );

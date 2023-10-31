@@ -1,17 +1,15 @@
 import React from "react";
 
-const CloseIcon = ({ height, width }) => {
+const CloseIcon = ({ height, width, className = "" }) => {
   return (
-    <div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 24 30"
+        viewBox="0 0 24 24"
         version="1.1"
-        x="0px"
-        y="0px"
         height={height}
         width={width}
+        className={className}
       >
         <title>icon/close</title>
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -22,7 +20,6 @@ const CloseIcon = ({ height, width }) => {
           />
         </g>
       </svg>
-    </div>
   );
 };
 

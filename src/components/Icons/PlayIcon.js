@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlayIcon = ({ height, width }) => {
+const PlayIcon = ({ height, width, className = "" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,6 +13,7 @@ const PlayIcon = ({ height, width }) => {
       xmlSpace="preserve"
       height={height}
       width={width}
+      className={className}
     >
       <g>
         <polygon points="69,50 34,23.347 34,76.653" />

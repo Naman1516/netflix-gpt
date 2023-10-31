@@ -9,6 +9,7 @@ const SearchInput = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
+        !inputRef.current.value &&
         searchContainerRef.current &&
         !searchContainerRef.current.contains(event.target)
       ) {
@@ -22,34 +23,54 @@ const SearchInput = () => {
     };
   }, []);
 
-  const showInput = () => {
-    setInputVisible(true);
+  const [timeout, setTimeoutId] = useState(null);
+
+  const debounce = (fn, delay) => {
+    return (...args) => {
+      clearTimeout(timeout);
+      const id = setTimeout(() => {
+        fn(...args);
+      }, delay);
+      setTimeoutId(id);
+    };
   };
 
-  const searchIconHeightWidth = isInputVisible ? 20 : 30;
+  const showInput = () => {
+    setInputVisible(true);
+    inputRef.current.value = "";
+    inputRef.current.focus();
+  };
+
+  const searchIconHeightandWidth = isInputVisible ? 20 : 30;
 
   return (
     <div
       ref={searchContainerRef}
-      className="relative flex justify-center items-center mr-8"
+      className="relative flex justify-center items-center"
     >
-      <button onClick={showInput}>
-        <span className="absolute top-1/2 transform -translate-y-1/2 left-1">
-          <IconSearch
-            height={searchIconHeightWidth}
-            width={searchIconHeightWidth}
-            className="transition-all ease-in delay-100"
-          />
-        </span>
+      <button
+        onClick={showInput}
+        disabled={isInputVisible}
+        className={`${
+          isInputVisible ? "translate-x-7" : ""
+        } transition-all ease-linear delay-200`}
+      >
+        <IconSearch
+          height={searchIconHeightandWidth}
+          width={searchIconHeightandWidth}
+          className={`transition-all ease-linear delay-200`}
+        />
       </button>
-      {isInputVisible && (
+      <form onSubmit={(e) => e.preventDefault()}>
         <input
           ref={inputRef}
-          type="search"
-          className="w-52 h-9 rounded transition-all ease-in delay-100 bg-neutral-600 bg-opacity-80 pl-8 text-white"
-          autoFocus
+          type="text"
+          className={`${
+            isInputVisible ? "w-52 pl-9" : "w-0"
+          } h-9 rounded transition-all ease-linear delay-200 bg-neutral-600 bg-opacity-80 text-white`}
+          onInput={(e) => debounce(() => alert(e.target.value), 500)()}
         />
-      )}
+      </form>
     </div>
   );
 };

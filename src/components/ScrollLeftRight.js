@@ -22,13 +22,13 @@ const ScrollLeftRight = ({ targetElement }) => {
   return (
     <div>
       <button
-        className="text-white absolute top-[57%] left-0 z-40 text-6xl"
+        className="text-white absolute top-[50%] left-0 z-40 text-6xl"
         onClick={scrollLeft}
       >
         ⬅
       </button>
       <button
-        className="text-white absolute top-[57%] right-4 z-40 text-6xl"
+        className="text-white absolute top-[50%] right-4 z-40 text-6xl"
         onClick={scrollRight}
       >
         ➡️
