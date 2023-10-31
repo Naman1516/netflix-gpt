@@ -10,7 +10,8 @@ import ModalMatchPercentage from "./ModalMatchPercentage";
 const MoreInfoModal = () => {
   const dispatch = useDispatch();
   const moreInfoModal = useSelector((store) => store.moreInfoModal);
-  const { playVideo } = useOpenYouTubeVideo(moreInfoModal.trailer?.key);
+  const key = moreInfoModal.trailer?.key;
+  const { playVideo } = useOpenYouTubeVideo(key);
   const { movieTitle, voteAvg, voteCount } = moreInfoModal.info;
 
   const closeModal = () => {
@@ -36,7 +37,7 @@ const MoreInfoModal = () => {
             <ModalCloseButton closeModal={closeModal} />
             {/* blur overlay from bottom to top */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
-            <ModalBackgroundVideo videoKey={moreInfoModal.trailer?.key} />
+            <ModalBackgroundVideo videoKey={key} />
             <div className="text-white p-14 absolute top-1/2 flex flex-col">
               <ModalHeader movieTitle={movieTitle} playVideo={playVideo} />
             </div>
