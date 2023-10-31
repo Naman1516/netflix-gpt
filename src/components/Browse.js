@@ -13,8 +13,6 @@ const Browse = () => {
   const isMoreInfoVisible = useSelector(
     (store) => store.moreInfoModal.isVisible
   );
-  console.log("Friom browxse");
-  console.log({ isMoreInfoVisible });
 
   return (
     <div>

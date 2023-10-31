@@ -18,7 +18,6 @@ const useGetMoreInfoTrailer = (movieId) => {
         ? trailers[Math.floor(Math.random() * trailers.length)]
         : json.results[0];
 
-      console.info({ trailer });
       dispatch(setMovieTrailer(trailer));
     } catch (error) {
       console.error(error);
