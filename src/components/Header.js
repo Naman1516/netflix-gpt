@@ -88,7 +88,7 @@ const Header = () => {
           isScrolled
             ? "fixed top-0 bg-[#141414]"
             : "absolute bg-gradient-to-b from-[#141414]"
-        } w-full px-8 py-2 z-30 h-18 flex justify-between items-center transition-transform ease-in-out duration-300`}
+        } w-full px-8 py-2 z-40 h-18 flex justify-between items-center transition-transform ease-in-out duration-300`}
       >
         <div className="flex justify-center items-center">
           <Logo />
