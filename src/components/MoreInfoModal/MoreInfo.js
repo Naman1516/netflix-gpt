@@ -29,8 +29,8 @@ const MoreInfo = () => {
 
   return (
     <div>
-      <div className="absolute w-full h-full bg-black opacity-50 z-40"></div>
-      <div className="z-40 text-gray-500 top-1/2 -translate-y-1/2 flex justify-center flex-col items-center w-full h-full fixed">
+      <div className="fixed w-full h-full bg-black opacity-50 z-40 top-1/2 -translate-y-1/2"></div>
+      <div className="z-40 text-gray-500 top-1/2 -translate-y-1/2 flex justify-center flex-col items-center w-full h-full fixed overflow-y-auto">
         <div className="w-8/12 z-50 absolute top-16 rounded-lg bg-[#141414]">
           <div className="relative">
             <button
@@ -50,16 +50,16 @@ const MoreInfo = () => {
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             ></iframe>
-          </div>
-          <div className="text-white p-14 absolute top-1/2 flex flex-col">
-            <span className="text-2xl font-semibold">
-              {moreInfoModal.info.movieTitle}
-            </span>
-            <span className="flex items-center justify-center gap-4 mt-2">
-              <PlayButton playVideo={playVideo} />
-              <MoreInfoAddToListButton />
-              <LikesMovie />
-            </span>
+            <div className="text-white p-14 absolute top-1/2 flex flex-col">
+              <span className="text-2xl font-semibold">
+                {moreInfoModal.info.movieTitle}
+              </span>
+              <span className="flex items-center justify-center gap-4 mt-2">
+                <PlayButton playVideo={playVideo} />
+                <MoreInfoAddToListButton />
+                <LikesMovie />
+              </span>
+            </div>
           </div>
           <div className="text-white px-10 py-5 flex justify-between">
             <span className={`font-bold ${matchPercentageColor}`}>
