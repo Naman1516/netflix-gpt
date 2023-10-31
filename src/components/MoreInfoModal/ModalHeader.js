@@ -7,7 +7,7 @@ const ModalHeader = ({ movieTitle, playVideo }) => {
   return (
     <>
       <span className="text-2xl font-semibold">{movieTitle}</span>
-      <span className="flex items-center justify-center gap-4 mt-2">
+      <span className="flex items-center gap-4 mt-2">
         <PlayButton playVideo={playVideo} />
         <MoreInfoAddToListButton />
         <ModalMovieLikeGroup />

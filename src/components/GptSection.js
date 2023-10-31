@@ -3,8 +3,14 @@ import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestions from "./GptMovieSuggestions";
 import { BG_IMG } from "../utils/constants/constants";
 import Header from "./Header";
+import { useSelector } from "react-redux";
+import MoreInfoModal from "./MoreInfoModal/MoreInfoModal";
 
 const GptSection = () => {
+  const isMoreInfoVisible = useSelector(
+    (store) => store.moreInfoModal.isVisible
+  );
+
   return (
     <div>
       <Header />
@@ -18,6 +24,7 @@ const GptSection = () => {
 
       <GptSearchBar />
       <GptMovieSuggestions />
+      {isMoreInfoVisible && <MoreInfoModal />}
     </div>
   );
 };
