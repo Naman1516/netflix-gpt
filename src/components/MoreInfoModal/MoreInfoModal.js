@@ -37,9 +37,7 @@ const MoreInfoModal = () => {
             <ModalCloseButton closeModal={closeModal} />
             {/* blur overlay from bottom to top */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent"></div>
-            <ModalBackgroundVideo
-              src={`https://www.youtube.com/embed/${key}?&autoplay=1&mute=1&controls=0&rel=0&loop=1`}
-            />
+            <ModalBackgroundVideo videoKey={key} />
             <div className="text-white p-14 absolute top-1/2 flex flex-col">
               <ModalHeader movieTitle={movieTitle} playVideo={playVideo} />
             </div>
