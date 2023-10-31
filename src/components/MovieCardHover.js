@@ -1,12 +1,12 @@
 import React from "react";
 import VoteIcon from "./Icons/VoteIcon";
-import AngleDownIcon from "./Icons/AngleDownIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovieDetails, toggleModal } from "../utils/store/moreInfoModal";
 import useGetMoreInfoTrailer from "../utils/custom-hooks/useGetMoreInfoTrailer";
 import { useOpenYouTubeVideo } from "../utils/custom-hooks/useOpenYoutubeVideo";
 import CardHoverPlayButton from "./Buttons/CardHoverPlayButton";
 import CardHoverAddToListButton from "./Buttons/CardHoverAddToListButton";
+import OpenMoreInfoModalButton from "./Buttons/OpenMoreInfoModalButton";
 
 const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
   useGetMoreInfoTrailer(id);
@@ -42,12 +42,7 @@ const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
             <CardHoverAddToListButton />
           </span>
           <span>
-            <button
-              className="hover:opacity-90 border-2 rounded-full"
-              onClick={openMoreInfoModal}
-            >
-              <AngleDownIcon height={30} width={30} className="p-1" />
-            </button>
+            <OpenMoreInfoModalButton openMoreInfoModal={openMoreInfoModal} />
           </span>
         </div>
       </div>

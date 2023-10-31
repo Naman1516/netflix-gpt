@@ -1,10 +1,9 @@
 import React, { useEffect, useCallback } from "react";
-import PlayIcon from "./Icons/PlayIcon";
-import MoreInfoIcon from "./Icons/MoreInfoIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowDesc } from "../utils/store/moviesSlice";
 import { useOpenYouTubeVideo } from "../utils/custom-hooks/useOpenYoutubeVideo";
 import PlayButton from "./Buttons/PlayButton";
+import MoreInfoButton from "./Buttons/MoreInfoButton";
 
 const VideoTitle = ({ title, overview }) => {
   const dispatch = useDispatch();
@@ -49,13 +48,7 @@ const VideoTitle = ({ title, overview }) => {
       </p>
       <div className="mt-6 lg:mt-0 flex">
         <PlayButton playVideo={playVideo} />
-        <button
-          className="ml-2 bg-gray-500 text-sm md:text-lg bg-opacity-50 hover:bg-opacity-30 rounded-md p-2 flex items-center space-x-1 pl-3 pr-4 text-white font-semibold"
-          onClick={playVideo}
-        >
-          <MoreInfoIcon height={30} width={30} />
-          <span>More Info</span>
-        </button>
+        <MoreInfoButton playVideo={playVideo} />
       </div>
     </div>
   );
