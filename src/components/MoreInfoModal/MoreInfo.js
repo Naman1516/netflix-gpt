@@ -6,6 +6,7 @@ import PlayIcon from "../Icons/PlayIcon";
 import PlusIcon from "../Icons/PlusIcon";
 import ThumbsUpIcon from "../Icons/ThumbsUpIcon";
 import LikesMovie from "./LikesMovie";
+import useGetMovieTrailer from "../../utils/custom-hooks/useGetMovieTrailer";
 
 const MoreInfo = () => {
   document.body.style.overflow = "hidden";

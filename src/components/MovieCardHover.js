@@ -1,22 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import VoteIcon from "./Icons/VoteIcon";
 import AngleDownIcon from "./Icons/AngleDownIcon";
 import PlusIcon from "./Icons/PlusIcon";
 import PlayIcon from "./Icons/PlayIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovieDetails, toggleModal } from "../utils/store/moreInfoModal";
-import useGetMovieTrailer from "../utils/custom-hooks/useGetMovieTrailer";
+import useGetMoreInfoTrailer from "../utils/custom-hooks/useGetMoreInfoTrailer";
+import { useOpenYouTubeVideo } from "../utils/custom-hooks/useOpenYoutubeVideo";
 
 const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
-  const trailerLink = useGetMovieTrailer(id);
-  const openYouTubeVideo = () => {
-    if (trailerLink) {
-      const youtubeUrl = `https://www.youtube.com/watch?v=${trailerLink}`;
-      window.open(youtubeUrl, "_blank", "noopener,noreferrer");
-    }
-  };
-
+  useGetMoreInfoTrailer(id);
   const moreInfoModal = useSelector((store) => store.moreInfoModal);
+  const { openVideo } = useOpenYouTubeVideo(moreInfoModal.trailer?.key);
 
   const dispatch = useDispatch();
   const openMoreInfoModal = () => {
@@ -45,7 +40,7 @@ const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
           <span>
             <button
               className="hover:opacity-90 border-2 rounded-full bg-white"
-              onClick={openYouTubeVideo}
+              onClick={openVideo}
               title="Play Trailer"
             >
               <PlayIcon height={30} width={30} />
