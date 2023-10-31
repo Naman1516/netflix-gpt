@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addTrailerVideo, toggleShowDesc } from "../store/moviesSlice";
 import { API_OPTIONS } from "../constants/constants";
+import { setMovieTrailer } from "../store/moreInfoModal";
 
 const useGetMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
@@ -18,8 +18,7 @@ const useGetMovieTrailer = (movieId) => {
       const trailer = trailers.length
         ? trailers[Math.floor(Math.random() * trailers.length)]
         : json.results[0];
-      dispatch(addTrailerVideo(trailer));
-      dispatch(toggleShowDesc(true));
+      dispatch(setMovieTrailer(trailer));
     } catch (error) {
       console.error(error);
     }

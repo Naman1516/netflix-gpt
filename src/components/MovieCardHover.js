@@ -10,10 +10,10 @@ import useGetMovieTrailer from "../utils/custom-hooks/useGetMovieTrailer";
 const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
   const trailerLink = useGetMovieTrailer(id);
   const openYouTubeVideo = () => {
-    // if (trailerLink) {
-    //   const youtubeUrl = `https://www.youtube.com/watch?v=${trailerLink}`;
-    //   window.open(youtubeUrl, "_blank", "noopener,noreferrer");
-    // }
+    if (trailerLink) {
+      const youtubeUrl = `https://www.youtube.com/watch?v=${trailerLink}`;
+      window.open(youtubeUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   const moreInfoModal = useSelector((store) => store.moreInfoModal);
