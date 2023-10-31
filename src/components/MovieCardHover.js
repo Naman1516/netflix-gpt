@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import VoteIcon from "./Icons/VoteIcon";
 import AngleDownIcon from "./Icons/AngleDownIcon";
-import PlusIcon from "./Icons/PlusIcon";
-import PlayIcon from "./Icons/PlayIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { setMovieDetails, toggleModal } from "../utils/store/moreInfoModal";
 import useGetMoreInfoTrailer from "../utils/custom-hooks/useGetMoreInfoTrailer";
 import { useOpenYouTubeVideo } from "../utils/custom-hooks/useOpenYoutubeVideo";
+import CardHoverPlayButton from "./Buttons/CardHoverPlayButton";
+import CardHoverAddToListButton from "./Buttons/CardHoverAddToListButton";
 
 const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
   useGetMoreInfoTrailer(id);
@@ -38,19 +38,8 @@ const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
         </div>
         <div className="flex justify-between items-center mt-5 w-full">
           <span>
-            <button
-              className="hover:opacity-90 border-2 rounded-full bg-white"
-              onClick={playVideo}
-              title="Play Trailer"
-            >
-              <PlayIcon height={30} width={30} />
-            </button>
-            <button
-              className="hover:opacity-90 ml-4 border-2 rounded-full"
-              title="Add to List"
-            >
-              <PlusIcon height={30} width={30} className="p-2" />
-            </button>
+            <CardHoverPlayButton playVideo={playVideo} />
+            <CardHoverAddToListButton />
           </span>
           <span>
             <button
