@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import ThumbsUpIcon from "../Icons/ThumbsUpIcon";
 
-const LikesMovie = () => {
+const ModalMovieLikeGroup = () => {
   // State to track whether the component is visible
   return (
     <span className="group relative flex items-center justify-center">
@@ -23,4 +23,4 @@ const LikesMovie = () => {
   );
 };
 
-export default LikesMovie;
+export default ModalMovieLikeGroup;

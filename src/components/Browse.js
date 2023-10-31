@@ -4,7 +4,7 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import useMovieSections from "../utils/custom-hooks/useMovieSections";
 import Footer from "./Footer";
-import MoreInfo from "./MoreInfoModal/MoreInfo";
+import MoreInfoModal from "./MoreInfoModal/MoreInfoModal";
 import { useSelector } from "react-redux";
 
 const Browse = () => {
@@ -21,7 +21,7 @@ const Browse = () => {
       <Header />
       <MainContainer />
       <SecondaryContainer />
-      {isMoreInfoVisible && <MoreInfo />}
+      {isMoreInfoVisible && <MoreInfoModal />}
 
       <Footer />
     </div>
