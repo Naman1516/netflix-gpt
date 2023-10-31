@@ -11,7 +11,7 @@ import { useOpenYouTubeVideo } from "../utils/custom-hooks/useOpenYoutubeVideo";
 const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
   useGetMoreInfoTrailer(id);
   const moreInfoModal = useSelector((store) => store.moreInfoModal);
-  const { openVideo } = useOpenYouTubeVideo(moreInfoModal.trailer?.key);
+  const { playVideo } = useOpenYouTubeVideo(moreInfoModal.trailer?.key);
 
   const dispatch = useDispatch();
   const openMoreInfoModal = () => {
@@ -40,7 +40,7 @@ const MovieCardHover = ({ id, alt, voteAvg, voteCount }) => {
           <span>
             <button
               className="hover:opacity-90 border-2 rounded-full bg-white"
-              onClick={openVideo}
+              onClick={playVideo}
               title="Play Trailer"
             >
               <PlayIcon height={30} width={30} />

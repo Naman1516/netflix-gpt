@@ -6,13 +6,15 @@ import PlayIcon from "../Icons/PlayIcon";
 import PlusIcon from "../Icons/PlusIcon";
 import ThumbsUpIcon from "../Icons/ThumbsUpIcon";
 import LikesMovie from "./LikesMovie";
-import useGetMovieTrailer from "../../utils/custom-hooks/useGetMovieTrailer";
+import PlayButton from "../Buttons/PlayButton";
+import { useOpenYouTubeVideo } from "../../utils/custom-hooks/useOpenYoutubeVideo";
 
 const MoreInfo = () => {
   document.body.style.overflow = "hidden";
 
   const dispatch = useDispatch();
   const moreInfoModal = useSelector((store) => store.moreInfoModal);
+  const { playVideo } = useOpenYouTubeVideo(moreInfoModal.trailer?.key);
 
   const closeModal = () => {
     dispatch(toggleModal());
@@ -56,11 +58,12 @@ const MoreInfo = () => {
               {moreInfoModal.info.movieTitle}
             </span>
             <span className="flex items-center justify-center gap-4 mt-2">
-              <button className="pl-4 py-1 pr-6 bg-white text-black rounded">
+              <PlayButton playVideo={playVideo} />
+              {/* <button className="pl-4 py-1 pr-6 bg-white text-black rounded">
                 <span className="inline-flex items-center justify-center">
                   <PlayIcon height={20} width={20} /> <span>Play</span>
                 </span>
-              </button>
+              </button> */}
               <button className="rounded-full bg-[#141414] bg-opacity-60 p-2 border-2 border-[#141414] border-opacity-20">
                 <PlusIcon height={20} width={20} />
               </button>

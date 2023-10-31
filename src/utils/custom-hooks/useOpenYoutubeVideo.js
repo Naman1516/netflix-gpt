@@ -1,5 +1,5 @@
 export const useOpenYouTubeVideo = (videoKey) => {
-  const openVideo = () => {
+  const playVideo = () => {
     if (videoKey) {
       const youtubeUrl = `https://www.youtube.com/watch?v=${videoKey}`;
       window.open(youtubeUrl, "_blank", "noopener noreferrer");
@@ -7,6 +7,6 @@ export const useOpenYouTubeVideo = (videoKey) => {
   };
 
   return {
-    openVideo,
+    playVideo,
   };
 };
